@@ -9,14 +9,19 @@ import {
 import SignUp from './Components/SignUp'; 
 import SignIn from './Components/SignIn';
 import Home from "./Components/Home"
+import ForgotPassword from './Components/ForgotPassword';
+import ResetPwd from './Components/ResetPwd'
+
 function App() {
   return (
     <div className="App">
     <Router>
       <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/signup" element={<SignUp/>}/>
-        <Route path="/signin" element={<SignIn/>}/>
+        <Route path="/home" element={<Home/>}/>
+        <Route path="/register" element={<SignUp/>}/>
+        <Route path="/login" element={<SignIn/>}/>
+        <Route path="/forgotpwd" element={<ForgotPassword/>}/>
+        <Route path="/reset_password/:id/:token" element={<ResetPwd/>}/>
       </Routes>
     </Router>
    
