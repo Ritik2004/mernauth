@@ -24,15 +24,18 @@ const ResetPwd = () => {
     })
    }
   return (
-    <div>
-       <h1>Reset Password</h1>
+    <>
+       <h1 className='center'>Reset Password</h1>
+    <div className='outcard'>
     Password:<input type="password" 
+    className='inputs'
       value={password}
       onChange={(e)=>setPassword(e.target.value)}
       placeholder='Enter Password'
     /><br></br>
-    <button onClick={handleSubmit}>Update Password</button>
+    <button className='btns' onClick={handleSubmit}>Update Password</button>
     </div>
+    </>
   )
 }
 

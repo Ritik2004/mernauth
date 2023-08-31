@@ -22,38 +22,33 @@ module.exports.userSignUp = async (req,res) => {
     }
    
 module.exports.userSignIn = async (req,res) => {
-    
-    try{
         const { email, password } = req.body;
-        const user = await UserModel.findOne({email})
-       
-        if(user){
-            const isMatch = await bcrypt.compare(password, user.password);
-            if(isMatch){
-              const token = jwt.sign({email:user.email, role:user.role},
-               "jwt-secret-key",{expiresIn:'1d'} )
-               res.cookie('token', token)
-               return res.json('success')
+        await UserModel.findOne({email}).select("+password")
+        .then(user => {
+          if(user){
+            bcrypt.compare(password, user.password, (err, response)=> {
+              if(response){
+                const token = jwt.sign({email:user.email, role:user.role},
+                 "jwt-secret-key",{expiresIn: '1d'})
+                 res.cookie('token', token)
+                 return res.status(200).json("success")
+              }else{
+                return res.status(404).json({
+                  success:false,
+                  message:"Invalid email or password"
+              })
             }
-            else{
-                return res.json("Pwd is incorrect")
-            }
-    }
-        else{
+          })
+    } else{
             return res.status(404).json({
-                message:"Invalid email or password"
-            })
+              success:false,
+              message:"Record not found"
+          })
         }
+    })
+  }
 
-    
-    }
-    catch(error){
-        res.status(500).json({message:error.message}) 
-        }
       
-
-    }
-
     module.exports.userPassword = async (req,res) => {
        const {email} = req.body;
        UserModel.findOne({email: email})

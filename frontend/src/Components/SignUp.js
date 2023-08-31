@@ -1,3 +1,4 @@
+import '../App.css'
 import React from 'react'
 import {useState} from "react"
 import {Link, useNavigate} from "react-router-dom"
@@ -29,27 +30,36 @@ const SignUp = () => {
    }
 
   return (
-    <div>
-    <h1>SIGNUP</h1>
-
-    <label>Name</label>
-    <input type="name"
+    <>
+    <h1 className='center'>Register</h1>
+     <div className='outcard'>
+    
+    Name<input type="name"
+      className='inputs'
       value={name}
       onChange={(e)=>setName(e.target.value)}
     />
     <br></br>
     Email:<input type="email" 
+    className='inputs'
       value={email}
       onChange={(e)=>setEmail(e.target.value)}
     /><br></br>
     Password:<input type="password"
+    className='inputs'
       vaue={password}
       onChange={(e)=>setPassword(e.target.value)}
     /><br></br>
-    <button onClick={handleSubmit}>Register</button>
-    <p>Already Have an Account</p>
-    <Link to="/login">Login</Link>
+    <button 
+    className='btns'
+    onClick={handleSubmit}>Submit</button>
+    <div className='outer'>
+    <p>Already Have an Account ?</p>
+    <Link className="link" to="/login">Login</Link>
     </div>
+    </div>
+    </>
+
   )
 }
 

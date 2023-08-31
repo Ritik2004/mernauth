@@ -23,15 +23,19 @@ const ForgotPassword = () => {
     })
    }
   return (
-    <div>
-       <h1>Login</h1>
+    <>
+       <h1 className='center'>Forgot Password</h1>
+       <div className='outcard'>
     Email:<input type="email" 
+    className='inputs'
       value={email}
       onChange={(e)=>setEmail(e.target.value)}
       placeholder='Enter Email'
     /><br></br>
-    <button onClick={handleSubmit}>Get Password</button>
+    
+    <button className='btns' onClick={handleSubmit}>Get Password</button>
     </div>
+    </>
   )
 }
 
